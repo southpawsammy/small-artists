@@ -6,18 +6,18 @@ def create_app():
     app.config['SECRET_KEY'] = 'sacc'
 
     from .views import views
-    from .auth import auth
 
     app.register_blueprint(views, url_prefix='/')
-    app.register_blueprint(auth, url_prefix='/')
 
     # Client info
     CLIENT_ID = os.getenv('CLIENT_ID')
     CLIENT_SECRET = os.getenv('CLIENT_SECRET')
+    REDIRECT_URI = os.getenv('REDIRECT_URI')
 
     # Spotify API endpoints
     TOKEN_URL = 'https://accounts.spotify.com/api/token'
-    TOP_ENDPOINT = 'https://api.spotify.com/v1/me/top/tracks'
-    
+    TRACKS_ENDPOINT = 'https://api.spotify.com/v1/me/top/tracks'
+    ACCOUNT_URL = 'https://api.spotify.com/v1/me'
+  
 
     return app
