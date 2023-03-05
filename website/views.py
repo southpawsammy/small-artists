@@ -10,6 +10,9 @@ def login():
 def home():
     return render_template("home.html")
 
+@views.route('/mixer')
+def mixer():
+    return render_template("mixer.html")
 
 @views.route('/logout')
 def logout():
