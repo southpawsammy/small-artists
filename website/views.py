@@ -26,8 +26,8 @@ logging.basicConfig(
 )
 
 # Client info
-CLIENT_ID='504254a465ad49bc9f6abe15650bf9f0'
-CLIENT_SECRET='69b0845682f341cabe3011c7cc51b68c'
+CLIENT_ID=XXXXXXXXXX
+CLIENT_SECRET=XXXXXXXX
 REDIRECT_URI='http://127.0.0.1:5000/callback'
 
 
@@ -40,8 +40,7 @@ ACCOUNT_URL = 'https://api.spotify.com/v1/me'
 @views.route('/')
 def login():
    
-    # redirect_uri can be guessed, so let's generate
-    # a random `state` string to prevent csrf forgery.
+    
     state = ''.join(
         secrets.choice(string.ascii_uppercase + string.digits) for _ in range(16)
     )
@@ -95,9 +94,6 @@ def callback():
         'redirect_uri': REDIRECT_URI,
     }
 
-    # `auth=(CLIENT_ID, SECRET)` basically wraps an 'Authorization'
-    # header with value:
-    # b'Basic ' + b64encode((CLIENT_ID + ':' + SECRET).encode())
     res = requests.post(TOKEN_URL, auth=(CLIENT_ID, CLIENT_SECRET), data=payload)
     res_data = res.json()
 
