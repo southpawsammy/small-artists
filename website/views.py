@@ -16,6 +16,8 @@ import requests
 import secrets
 import string
 from urllib.parse import urlencode
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
 
 views = Blueprint('views', __name__)
 
@@ -160,9 +162,8 @@ def account():
 
 @views.route('/find')
 def home():
-
-    FIND_URL = 'https://api.spotify.com/v1/search'
     return render_template("home.html")
+
 
 @views.route('/mixer')
 def mixer():
